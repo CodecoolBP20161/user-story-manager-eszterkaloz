@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>User Story Manager - Add new story</title>
+    <style>
+		body {
+			font: 100% arial, helvetica, sans-serif;
+		}
+
+		fieldset {
+			padding: 0 1em 1em 1em;
+            display:inline;
+		}
+    </style>
+</head>
+
+<body>
+    <form action="", method=post>
+        <fieldset>
+
+        <h2>User Story Manager - {{title}} </h2>
+
+        <p>Story Title<br>
+        <textarea name="story_title" rows="1" cols="60" id="story_title">{{ userstory.story_title }}</textarea>
+        </p>
+
+        <p>User Story<br>
+        <textarea name="user_story" rows="5" cols="60" id="user_story">{{ userstory.user_story }}</textarea>
+        </p>
+
+        <p>Acceptance Criteria<br>
+        <textarea name="acceptance_crit" rows="5" cols="60" id="acceptance_crit">{{ userstory.acceptance_crit }}</textarea>
+        </p>
+
+        <p>Business Value<br>
+        <input required name="business_value" id="business_value" type="number" value="{{ userstory.business_value  or 100}}" min="100" max="1500" step="100">
+        </p>
+
+        <p>Estimation (h)<br>
+        <input required name="estimation" id="estimation" type="number" value="{{ userstory.estimation  or 0.5}}" min="0.5" max="40" step="0.5">
+        </p>
+
+        <p>Status<br>
+        <select required name="status" id="status">
+            <option {{"selected" if userstory.status == "planning" else ""}} value="planning">Planning</option>
+            <option {{"selected" if userstory.status == "to do" else ""}}value="to do">To Do</option>
+            <option {{"selected" if userstory.status == "in progress" else ""}}value="in progress">In progress</option>
+            <option {{"selected" if userstory.status == "review" else ""}}value="review">Review</option>
+            <option {{"selected" if userstory.status == "done" else ""}}value="done">Done</option>
+        </select>
+        </p>
+
+        <p><button type="submit"> {{action}}</button></p>
+
+        </fieldset>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>User Story Manager</title>
+    <style>
+		body {
+			font: 100% arial, helvetica, sans-serif;
+		}
+		fieldset {
+			padding: 0 1em 1em 1em;
+            display:inline;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+		}
+        th, td {
+            padding: 5px;
+        }
+        th {
+            text-align: left;
+        }
+
+    </style>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<!-- <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css"> -->
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> -->
+
+<body>
+
+<h3>User Story Manager</h3>
+    <a href="{{url_for('show_form_template')}}">
+        <button type="submit">Add new user story</button></a>
+    <br>
+
+    <table style="width:100">
+        <div>
+            <th>ID</th>
+            <th>Story Title</th>
+            <th>User Story</th>
+            <th>Acceptance Criteria</th>
+            <th>Business Value</th>
+            <th>Estimation</th>
+            <th>Status</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+
+        </div>
+
+        {% for userstory in userstories %}
+        <tr>
+            <td>{{ userstory.id }}</td>
+            <td>{{ userstory.story_title }}</td>
+            <td>{{ userstory.user_story }}</td>
+            <td>{{ userstory.acceptance_crit }}</td>
+            <td>{{ userstory.business_value }}</td>
+            <td>{{ userstory.estimation }}</td>
+            <td>{{ userstory.status }}</td>
+            <td><a href="{{url_for('edit_user_story', story_id=userstory.id)}}"><button type="submit">&#x270E;</button></a></td>
+            <td><a href="{{url_for('delete_user_story', story_id=userstory.id)}}"><button type="submit"><i class="glyphicon glyphicon-trash"></i></button></a></td>
+        </tr>
+        {% endfor %}
